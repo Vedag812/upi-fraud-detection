@@ -2,13 +2,13 @@
 
 I built this project to understand how digital payment fraud works in India's UPI ecosystem. The idea was to simulate a realistic UPI transaction dataset and then try different approaches to catch fraudulent transactions - basically what payment companies like Razorpay or Paytm do internally.
 
-## the problem
+## The problem
 
 India's UPI system processes 16+ billion transactions every month (as of Feb 2025). With that kind of volume, even a tiny fraud rate means crores of rupees lost. I wanted to see if I could build a system that flags suspicious transactions using statistical methods and machine learning.
 
 Since real UPI data isn't publicly available (obvious privacy reasons), I generated synthetic data calibrated against official NPCI ecosystem stats and RBI fraud reports. The distributions, bank market shares, and fraud patterns all mirror what actually happens in the real world.
 
-## what I actually built
+## What I actually built
 
 **Data pipeline** - generates 1M transactions with realistic patterns (spending peaks at lunch and evening, more P2M on weekdays, festival season spikes etc). Injected 6 types of fraud that actually occur in UPI - rapid fire transactions, round-number structuring, unusual hour activity, geographic impossibility, and more.
 
@@ -28,7 +28,7 @@ Then combined all three into an ensemble that flags when at least 2 methods agre
 2. Fraud rate is higher at night 1-5 AM (Chi-squared, p < 0.001)
 3. Fraud rate varies across transaction types (Chi-squared, p < 0.001)
 
-## dashboards
+## Dashboards
 
 ### Power BI Dashboard
 
@@ -46,16 +46,10 @@ Built a 3-page interactive dashboard with a star schema data model using real NP
 
 ![Real Data - NPCI monthly trends, RBI fraud stats, Benford's Law normal vs fraud comparison](screenshots/03_real_data_benfords.png)
 
-### Streamlit Dashboard
-
-Interactive web dashboard with 6 pages - overview, fraud intelligence, bank/city analytics, real market context with NPCI data, Benford's Law visualization, and transaction lookup.
-
-![Streamlit dashboard overview page](screenshots/04_streamlit_dashboard.png)
-
 ### Excel Report
 6-sheet report for non-technical stakeholders with executive summary, fraud details, statistical results, method comparison, bank performance, and recommendations.
 
-## results
+## Results
 
 | Method | Precision | Recall | F1 |
 |--------|-----------|--------|-----|
@@ -71,7 +65,7 @@ Key findings:
 - Benford's Law deviation is way more pronounced in fraudulent transactions
 - Ensemble approach beats any single method for precision-recall balance
 
-## real data used
+## Real data used (Where i fetched data feom)
 
 - **NPCI UPI Ecosystem Statistics** - monthly transaction volumes Apr 2023 to Feb 2025
 - **RBI Annual Report on Banking** - fraud case counts and values FY2020-2025
@@ -79,11 +73,11 @@ Key findings:
 
 FY25 saw a 53% drop in card/internet fraud cases after banks adopted AI/ML detection systems (source: RBI Annual Report 2025).
 
-## tech stack
+## Tech stack
 
 Python, Pandas, NumPy, SQLite, Scikit-learn, SciPy, Plotly, Streamlit, Matplotlib, Seaborn, OpenPyXL, Power BI
 
-## project structure
+## Project structure
 
 ```
 upi-fraud-detection/
@@ -108,7 +102,7 @@ upi-fraud-detection/
 └── README.md
 ```
 
-## how to run
+## How to run
 
 ```bash
 # setup
@@ -123,18 +117,11 @@ python run_pipeline.py
 streamlit run dashboard/app.py
 ```
 
-## data sources
+## Data sources
 
 The synthetic data isn't random - it's calibrated against real published numbers:
 - NPCI UPI Ecosystem Statistics - bank market shares, volumes, monthly growth
 - RBI Annual Report on Trends and Progress of Banking - fraud rates, common patterns
 - NPCI monthly reports - transaction volumes, value trends
 
-## what I'd do next
 
-If I had access to real labeled data or more time:
-- Add real-time streaming with Kafka
-- Try deep learning (autoencoders) for anomaly detection
-- Build a proper REST API for the fraud scoring engine
-- Add network graph analysis to detect fraud rings
-- Deploy the Streamlit dashboard on Streamlit Cloud
