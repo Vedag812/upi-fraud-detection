@@ -1,0 +1,12 @@
+{
+  "total_transactions": 1029139,
+  "total_fraud": 29139,
+  "fraud_rate": 2.83,
+  "date_range": "2024-01-01 00:01:15 to 2024-12-31 23:59:58",
+  "unique_senders": 48463,
+  "unique_receivers": 54801,
+  "avg_amount": 1346.29,
+  "median_amount": 399.0,
+  "total_value": 1385518467.76,
+  "generated_at": "2026-02-27 21:54:50"
+}

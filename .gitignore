@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/*.csv
+data/processed/*.csv
+data/powerbi/*.csv
+database/*.db
+reports/*.xlsx
+.DS_Store
+*.egg-info/
+dist/
+build/
+.env
